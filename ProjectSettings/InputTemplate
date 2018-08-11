@@ -35,7 +35,7 @@
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: joystick TEMP button 0
+    positiveButton: joystick TEMP button 2
     altNegativeButton: 
     altPositiveButton: 
     gravity: 3
@@ -51,7 +51,7 @@
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: joystick TEMP button 1
+    positiveButton: joystick TEMP button 3
     altNegativeButton: 
     altPositiveButton: 
     gravity: 3
@@ -115,7 +115,7 @@
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: joystick TEMP button 2
+    positiveButton: joystick TEMP button 0
     altNegativeButton: 
     altPositiveButton: 
     gravity: 3
@@ -131,7 +131,7 @@
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: joystick TEMP button 3
+    positiveButton: joystick TEMP button 1
     altNegativeButton: 
     altPositiveButton: 
     gravity: 3
