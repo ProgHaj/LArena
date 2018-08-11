@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class Aim : MonoBehaviour {
 
-	float aimSpeed = 1f;
+	public float aimSpeed = 2f;
     float direction = 1f;
     float currentAngle = 50f;
-    float maxAngle = 80f;
-    float minAngle = -80f;
+    float maxAngle = 90f;
+    float minAngle = -70f;
 
 	float distance;
 	float defaultDistance = 1f;
 	float maxDistance = 2f;
-    float holdingSpeed = 1f;
+    public float holdingSpeed = 1f;
     bool isFiring = false;
 
-    float bulletSpeed = 3f;
-    float cooldown = 0.2f;
+    public float bulletSpeed = 3f;
+    public float cooldown = 0.2f;
     float timestampCooldown;
 
     Transform parent;

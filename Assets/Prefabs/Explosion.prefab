@@ -9,66 +9,46 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1027405588461230}
+  m_RootGameObject: {fileID: 1459631708055594}
   m_IsPrefabParent: 1
---- !u!1 &1027405588461230
+--- !u!1 &1459631708055594
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4448656204370912}
-  - component: {fileID: 212416787896075420}
-  - component: {fileID: 50446067917374070}
-  - component: {fileID: 58261111889290114}
-  - component: {fileID: 114064886171200558}
+  - component: {fileID: 4783951260647276}
+  - component: {fileID: 58865868572212648}
+  - component: {fileID: 114356296905302110}
+  - component: {fileID: 114630842634505534}
+  - component: {fileID: 212739528782960324}
   m_Layer: 0
-  m_Name: Bullet
+  m_Name: Explosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4448656204370912
+--- !u!4 &4783951260647276
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1027405588461230}
+  m_GameObject: {fileID: 1459631708055594}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.672, y: 0.113, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &50446067917374070
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1027405588461230}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!58 &58261111889290114
+--- !u!58 &58865868572212648
 CircleCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1027405588461230}
+  m_GameObject: {fileID: 1459631708055594}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -77,27 +57,38 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.31999996
---- !u!114 &114064886171200558
+  m_Radius: 0.2
+--- !u!114 &114356296905302110
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1027405588461230}
+  m_GameObject: {fileID: 1459631708055594}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09931d560da4243eba4c1cc6b03367fd, type: 3}
+  m_Script: {fileID: 11500000, guid: e916bf37e79734210ac796ce78f1bb64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionPrefab: {fileID: 1459631708055594, guid: 940d12d0c00bd47d08c06f1386c26a97,
-    type: 2}
-  time: 3
---- !u!212 &212416787896075420
+  time: 2
+  growthSpeed: 1
+--- !u!114 &114630842634505534
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1459631708055594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e11db7d3a6a2a404d80fb5f0b955b302, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  force: 1
+--- !u!212 &212739528782960324
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1027405588461230}
+  m_GameObject: {fileID: 1459631708055594}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -128,7 +119,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: be87518b888a246418cadf8e79bcd512, type: 3}
-  m_Color: {r: 0.3500356, g: 0.4339623, b: 0.40953413, a: 1}
+  m_Color: {r: 1, g: 0.018101089, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
