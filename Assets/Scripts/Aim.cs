@@ -5,26 +5,46 @@ using UnityEngine;
 public class Aim : MonoBehaviour {
 
 	float aimSpeed = 1f;
-	float distance = 1f;
+    float direction = 1f;
     float currentAngle = 50f;
-    float bulletSpeed = 3f;
     float maxAngle = 80f;
     float minAngle = -80f;
-    float direction = 1f;
+
+	float distance;
+	float defaultDistance = 1f;
+	float maxDistance = 2f;
+    float holdingSpeed = 1f;
+    bool isFiring = false;
+
+    float bulletSpeed = 3f;
+    float cooldown = 0.2f;
+    float timestampCooldown;
+
     Transform parent;
     public GameObject bulletPrefab;
 
 	// Use this for initialization
 	void Start () {
 		parent = this.transform.parent;
+        timestampCooldown = -cooldown;
+        distance = defaultDistance;
         transform.localPosition = CalculatePosition(currentAngle, distance);
 	}
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-		if (Input.GetButtonDown("Fire1")) {
-			Shoot();
-		}
+		if (Input.GetButton("Fire1") && IsNotOnCooldown()) {
+            if (isFiring) {
+                HoldingFire();
+            } else {
+                distance = 0.5f;
+                isFiring = true;
+            }
+		} else if (isFiring) {
+			Fire();
+            isFiring = false;
+            timestampCooldown = Time.time;
+        }
 
         SetAim();
         SetDirection();
@@ -32,14 +52,20 @@ public class Aim : MonoBehaviour {
         transform.localPosition = CalculatePosition (currentAngle, distance);
 	}
 
-	void Shoot() {
+    void HoldingFire() {
+        if (distance < maxDistance) {
+            distance += holdingSpeed * Time.deltaTime;
+        }
+    }
+
+	void Fire() {
         Vector3 spawnPosition = parent.position + transform.localPosition / 2f;
-        Vector3 velocity = transform.localPosition.normalized * bulletSpeed; 
+        Vector3 velocity = transform.localPosition * bulletSpeed; 
 		GameObject bullet = Instantiate(bulletPrefab, spawnPosition, parent.rotation);
         Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
         bulletRb.velocity = velocity;
+        distance = defaultDistance;
 	}
-
     void SetAim() {
         currentAngle %= 180;
 
@@ -62,5 +88,9 @@ public class Aim : MonoBehaviour {
 
     Vector2 CalculatePosition(float angle, float distance) {
         return new Vector2(Mathf.Cos(angle * Mathf.PI/180f) * direction, Mathf.Sin(angle * Mathf.PI/180f)) * distance;
+    }
+
+    bool IsNotOnCooldown() {
+        return timestampCooldown + cooldown < Time.time;
     }
 }
