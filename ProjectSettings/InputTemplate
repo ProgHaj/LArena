@@ -1,0 +1,144 @@
+  - serializedVersion: 3
+    m_Name: HorizontalTEMP
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 3
+    dead: 0.5
+    sensitivity: 1
+    snap: 1
+    invert: 0
+    type: 2
+    axis: 0
+    joyNum: TEMP
+  - serializedVersion: 3
+    m_Name: VerticalTEMP
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 3
+    dead: 0.5
+    sensitivity: 1
+    snap: 1
+    invert: 1
+    type: 2
+    axis: 1
+    joyNum: TEMP
+  - serializedVersion: 3
+    m_Name: AButtonTEMP
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: joystick TEMP button 0
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 3
+    dead: 0
+    sensitivity: 1
+    snap: 1
+    invert: 0
+    type: 0
+    axis: 4
+    joyNum: TEMP
+  - serializedVersion: 3
+    m_Name: BButtonTEMP
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: joystick TEMP button 1
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 3
+    dead: 0
+    sensitivity: 1
+    snap: 1
+    invert: 0
+    type: 0
+    axis: 4
+    joyNum: TEMP
+  - serializedVersion: 3
+    m_Name: StartButtonTEMP
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: joystick TEMP button 7
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 3
+    dead: 0
+    sensitivity: 1
+    snap: 1
+    invert: 0
+    type: 0
+    axis: 4
+    joyNum: TEMP
+  - serializedVersion: 3
+    m_Name: Horizontal2TEMP
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 3
+    dead: 0.5
+    sensitivity: 1
+    snap: 1
+    invert: 0
+    type: 2
+    axis: 3
+    joyNum: TEMP
+  - serializedVersion: 3
+    m_Name: Vertical2TEMP
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 3
+    dead: 0.5
+    sensitivity: 1
+    snap: 1
+    invert: 1
+    type: 2
+    axis: 4
+    joyNum: TEMP
+  - serializedVersion: 3
+    m_Name: AButton2TEMP
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: joystick TEMP button 2
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 3
+    dead: 0
+    sensitivity: 1
+    snap: 1
+    invert: 0
+    type: 0
+    axis: 4
+    joyNum: TEMP
+  - serializedVersion: 3
+    m_Name: BButton2TEMP
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: joystick TEMP button 3
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 3
+    dead: 0
+    sensitivity: 1
+    snap: 1
+    invert: 0
+    type: 0
+    axis: 4
+    joyNum: TEMP

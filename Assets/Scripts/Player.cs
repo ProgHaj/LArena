@@ -33,6 +33,22 @@ public class Player : MonoBehaviour {
 		}
 	}
 
+	private int playerId;
+
+	public int PlayerId {
+		get {
+			return playerId;
+		}
+		set {
+			IPlayerId[] scriptsWithId = GetComponentsInChildren<IPlayerId>();
+			foreach (IPlayerId script in scriptsWithId) {
+				script.playerId = value;
+			}
+
+			playerId = value;	
+		}
+	}
+
 	void Start () {
 		rb = this.GetComponent<Rigidbody2D>();
 		maxSpeed = movementSpeed;
@@ -43,11 +59,11 @@ public class Player : MonoBehaviour {
 		float y, x;
 		y = x = 0;
 
-		if (Input.GetButtonDown("Jump1") && CanJump() && rb.velocity.y <= 0f) {
+		if (Inputs.AButton(playerId) && CanJump() && rb.velocity.y <= 0f) {
 			y = Jump();
 		}
 
-		x = Input.GetAxisRaw("Horizontal1") * movementSpeed;
+		x = Inputs.Horizontal(playerId) * movementSpeed;
 
 		//Handles extra applied force, outside walking speed
 		if (Mathf.Abs(rb.velocity.x) > maxSpeed) {

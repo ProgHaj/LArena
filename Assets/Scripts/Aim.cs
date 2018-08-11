@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(SpriteRenderer))]
-public class Aim : MonoBehaviour {
+public class Aim : MonoBehaviour, IPlayerId {
 
-	float aimSpeed = 2f;
+	float aimSpeed = 3f;
     float direction = 1f;
     float currentAngle = 50f;
     float maxAngle = 90f;
@@ -24,6 +24,8 @@ public class Aim : MonoBehaviour {
     Transform parent;
     public GameObject bulletPrefab;
 
+    public int playerId {get; set;}
+
 	void Start () {
 		parent = this.transform.parent;
         timestampCooldown = -cooldown;
@@ -32,7 +34,7 @@ public class Aim : MonoBehaviour {
 	}
 	
 	void FixedUpdate () {
-		if (Input.GetButton("Fire1") && IsNotOnCooldown()) {
+		if (Inputs.BButton(playerId) && IsNotOnCooldown()) {
             if (isFiring) {
                 HoldingFire();
             } else {
@@ -75,7 +77,7 @@ public class Aim : MonoBehaviour {
     void SetAim() {
         currentAngle %= 180;
 
-		float change = Input.GetAxisRaw("Vertical1") * aimSpeed;
+		float change = Inputs.Vertical(playerId) * aimSpeed;
         if (Mathf.Abs(change) <= 0.2f) return;
         currentAngle += change;
 
@@ -86,7 +88,7 @@ public class Aim : MonoBehaviour {
     }
 
     void SetDirection() {
-        float faceDirection = Input.GetAxisRaw("Horizontal1");
+        float faceDirection = Inputs.Horizontal(playerId);
         if (Mathf.Abs(faceDirection) > 0.8f) {
             direction = faceDirection/Mathf.Abs(faceDirection);
         }
