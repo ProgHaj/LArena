@@ -20,7 +20,6 @@ public class ShrinkOverTime : MonoBehaviour {
 
     /* Shrinks every "intervall" untill "minSize" is reached */
     IEnumerator Shrink(float intervall, float minSize) {
-        Debug.Log(trans.localScale.x);
         while (trans.localScale.x > minSize) {
             yield return new WaitForSeconds(intervall);
             trans.localScale -= new Vector3(speed, 0, 0);

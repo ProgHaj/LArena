@@ -53,3 +53,6 @@ TagManager:
   - name: Foreground
     uniqueID: 112258923
     locked: 0
+  - name: Aim
+    uniqueID: 1703067291
+    locked: 0
