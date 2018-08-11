@@ -2,31 +2,48 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
+[RequireComponent(typeof(Rigidbody2D), typeof(Collider2D), typeof(SpriteRenderer))]
 public class Player : MonoBehaviour {
 
 	Rigidbody2D rb;
-	float movementSpeed = 1f;
-	float maxSpeed = 1f;
-	float distance = 5f;
-	float recoverySpeed = 10f; // Speed of getting back normal speed when over the max speed.
+	float movementSpeed = 2f;
+	float maxSpeed;
+	float jumpForce = 5f;
+	float recoverySpeed = 5f; // Speed of getting back normal speed when over the max speed.
+	private Color color;
 
-	// Use this for initialization
+    public Color Color { 
+		get {
+			return color;
+		}
+		set {
+			if (value != null) {
+				SpriteRenderer[] sprites = GetComponentsInChildren<SpriteRenderer>();
+				foreach(SpriteRenderer sprite in sprites) {
+					sprite.color = value;
+				}
+
+				SpriteRenderer thisSprite = GetComponent<SpriteRenderer>();
+				if (thisSprite != null) {
+					thisSprite.color = value;
+				}
+			}
+
+			color = value;
+		}
+	}
+
 	void Start () {
 		rb = this.GetComponent<Rigidbody2D>();
-		
+		maxSpeed = movementSpeed;
+        Color = this.color;
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
 	void FixedUpdate () {
 		float y, x;
 		y = x = 0;
 
-		if (Input.GetButtonDown("Jump1") && CanJump()) {
+		if (Input.GetButtonDown("Jump1") && CanJump() && rb.velocity.y <= 0f) {
 			y = Jump();
 		}
 
@@ -37,7 +54,6 @@ public class Player : MonoBehaviour {
 			float extraX = rb.velocity.x;
 			if (extraX < 0) x = Mathf.Max(extraX, extraX + x * recoverySpeed * Time.deltaTime);
 			if (extraX > 0) x = Mathf.Min(extraX, extraX + x * recoverySpeed * Time.deltaTime);
-			Debug.Log(x);
 		}
 
 		rb.velocity = new Vector2(x, rb.velocity.y + y);
@@ -45,12 +61,16 @@ public class Player : MonoBehaviour {
 
 	bool CanJump() {
 		int layerMaskIndex = LayerMask.NameToLayer("Ground");
-		int layerMask = 1 << layerMaskIndex;
-
-		return true;
+		int layerMaskIndex2 = LayerMask.NameToLayer("Player");
+		int layerMask = (1 << layerMaskIndex) + (1 << layerMaskIndex2);
+		Vector3 groundCheck = new Vector3(0, -0.3f, 0);
+		Vector3 underPlayer = new Vector3(0, -0.27f, 0);
+		bool canJump = Physics2D.Linecast(transform.position + underPlayer, transform.position + groundCheck, layerMask);
+		Debug.Log(canJump);
+		return canJump;
 	}
 
 	float Jump() {
-		return distance;
+		return jumpForce;
 	}
 }

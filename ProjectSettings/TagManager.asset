@@ -13,10 +13,10 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - Ground
+  - Player
+  - Bullet
+  - Water
   - 
   - 
   - 
@@ -50,7 +50,7 @@ TagManager:
   - name: Water
     uniqueID: 1379628189
     locked: 0
-  - name: Foreground
+  - name: Ground
     uniqueID: 112258923
     locked: 0
   - name: Aim

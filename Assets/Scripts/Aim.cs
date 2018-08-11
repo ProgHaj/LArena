@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(SpriteRenderer))]
 public class Aim : MonoBehaviour {
 
-	public float aimSpeed = 2f;
+	float aimSpeed = 2f;
     float direction = 1f;
     float currentAngle = 50f;
     float maxAngle = 90f;
@@ -13,17 +14,16 @@ public class Aim : MonoBehaviour {
 	float distance;
 	float defaultDistance = 1f;
 	float maxDistance = 2f;
-    public float holdingSpeed = 1f;
+    float holdingSpeed = 3f;
     bool isFiring = false;
 
-    public float bulletSpeed = 3f;
-    public float cooldown = 0.2f;
+    float bulletSpeed = 3f;
+    float cooldown = 0.3f;
     float timestampCooldown;
 
     Transform parent;
     public GameObject bulletPrefab;
 
-	// Use this for initialization
 	void Start () {
 		parent = this.transform.parent;
         timestampCooldown = -cooldown;
@@ -31,7 +31,6 @@ public class Aim : MonoBehaviour {
         transform.localPosition = CalculatePosition(currentAngle, distance);
 	}
 	
-	// Update is called once per frame
 	void FixedUpdate () {
 		if (Input.GetButton("Fire1") && IsNotOnCooldown()) {
             if (isFiring) {
@@ -59,12 +58,19 @@ public class Aim : MonoBehaviour {
     }
 
 	void Fire() {
-        Vector3 spawnPosition = parent.position + transform.localPosition / 2f;
+        Vector3 spawnPosition = parent.position + transform.localPosition.normalized * defaultDistance / 2f;
         Vector3 velocity = transform.localPosition * bulletSpeed; 
 		GameObject bullet = Instantiate(bulletPrefab, spawnPosition, parent.rotation);
         Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
-        bulletRb.velocity = velocity;
+        if (bulletRb != null) {
+            bulletRb.velocity = velocity;
+        }
         distance = defaultDistance;
+
+        SpriteRenderer sprite = bullet.GetComponent<SpriteRenderer>();
+        if (sprite != null) {
+            sprite.color = this.GetComponent<SpriteRenderer>().color;
+        }
 	}
     void SetAim() {
         currentAngle %= 180;
