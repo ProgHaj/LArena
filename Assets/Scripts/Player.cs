@@ -89,4 +89,9 @@ public class Player : MonoBehaviour {
 	float Jump() {
 		return jumpForce;
 	}
+
+	public void TriggerDeath() {
+		GameManager.playersAlive -= 1;
+		Destroy(this.gameObject);
+	}
 }

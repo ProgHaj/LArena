@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour {
 	public GameObject playerPrefab;
 	public List<GameObject> playerObjects = new List<GameObject>();
 	public int players = 0;
-	public int playersAlive = 0;
+	public static int playersAlive = 0;
 	public static Dictionary<int, int> controllerId = new Dictionary<int, int>();
 	public List<int> controllers = new List<int>();
 	public bool isPlayingGame = false;
@@ -22,6 +22,9 @@ public class GameManager : MonoBehaviour {
 			SpawnPlayers();
 		} else if (isPlayingGame) {
 			//CheckWinConditions();
+			if (playersAlive <= 1) {
+				Debug.Log("Victory!");
+			}
 		}
 	}
 
@@ -61,6 +64,14 @@ public class GameManager : MonoBehaviour {
 			playerObjects.Add(player);
 		}
 
+
 		isPlayingGame = true;
+		GameObject ground = GameObject.FindWithTag("Ground");
+		if (ground != null) {
+			ShrinkOverTime script = ground.GetComponent<ShrinkOverTime>();
+			if (script != null) {
+				script.enabled = true;
+			}
+		}
 	}
 }
