@@ -1,9 +1,12 @@
 # LArena
 Game made for LD42 comp
 
-Should be played 2-? players, ? since input manager takes 16 controllers, but have only tested with one and I know there's a limit of 4 on xbox 360 controls on a single computer.
 
-If start the game solo you enter "practice mode" which is just the same as the real game but you can't win, and 1 death resets the game.
+2 - ? player couch game. The goal is to knock out the others from the platform, which will shrink. First to 3 wins.
+
+2 players can play on the same gamepad, and 2 players can play on the keyboard.
+
+If you start the game solo you will enter a "practice mode", which is just the same as the real game but you can't win. In practice mode one death resets the game.
 
 # Controls
 * w/i/joystick_up and s/k/joystick_down to aim
@@ -17,5 +20,9 @@ If start the game solo you enter "practice mode" which is just the same as the r
 # How to play
 Clone this repo and build it yourself, or play it online using webGL: [hajkep.se/games/ld42-LARENA-compo/](hajkep.se/games/ld42-LARENA-compo/)
 
+
+
 # Music
 Made the music in MilkyTracker using sine and saw waves.
+
+
