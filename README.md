@@ -13,3 +13,9 @@ If start the game solo you enter "practice mode" which is just the same as the r
 * space/gamepad_start to start the game, start first after everone has joined the game
 
 2 persons can play using the same controller.
+
+# How to play
+Clone this repo and build it yourself, or play it online using webGL: [hajkep.se/games/ld42-LARENA-compo/](hajkep.se/games/ld42-LARENA-compo/)
+
+# Music
+Made the music in MilkyTracker using sine and saw waves.
