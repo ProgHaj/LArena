@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour {
 
 	public GameObject playerPrefab;
 	public GameObject playerUIPrefab;
+	public Image controllerImage;
+	public Text VictoryText;
 	public List<GameObject> playerObjects = new List<GameObject>();
 	public int players = 0;
 	public static int playersAlive = 0;
@@ -22,12 +24,17 @@ public class GameManager : MonoBehaviour {
 
 	void Start() {
 		UIOverlay = GameObject.FindWithTag("UI");
+		VictoryText.enabled = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if (isPlayingGame) {
-			if (playersAlive <= 1) {
+			if (players == 1) {
+				if (playersAlive == 0) {
+					HardResetGame();
+				}
+			} else if (playersAlive <= 1) {
 				WonRound();
 			}
 		} else if (isSettingUp) {
@@ -59,6 +66,7 @@ public class GameManager : MonoBehaviour {
 				playersAlive = players;
 				isSettingUp = false;
 				isSpawningPlayers = true;
+				controllerImage.enabled = false;
 			}
 		}
 	}
@@ -150,15 +158,9 @@ public class GameManager : MonoBehaviour {
 			}
 		}
 
-		foreach(KeyValuePair<int, GameObject> element in UIElements) {
-			if (element.Value != null) {
-				Destroy(element.Value.gameObject);
-			}
-		}
 
 		playersAlive = 0;
 		playerObjects = new List<GameObject>();
-		UIElements = new Dictionary<int, GameObject>();
 	}
 
 	void SoftResetGame () {
@@ -177,6 +179,16 @@ public class GameManager : MonoBehaviour {
 		isPlayingGame = false;
 		colors = new Dictionary<int, Color>();
 		score = new Dictionary<int, int>();
+		foreach(KeyValuePair<int, GameObject> element in UIElements) {
+			if (element.Value != null) {
+				Destroy(element.Value.gameObject);
+			}
+		}
+
+		UIElements = new Dictionary<int, GameObject>();
+		controllerImage.enabled = true;
+		VictoryText.text = "";
+		VictoryText.enabled = false;
 	}
 
 
@@ -205,7 +217,8 @@ public class GameManager : MonoBehaviour {
 	}
 
 	void Victory(int winner) {
-		Debug.Log("Player " + winner + " has won the game!");
+		VictoryText.enabled = true;
+		VictoryText.text = "Player " + winner + " is VICTORIOUS!";
 		Invoke("HardResetGame", 5f);
 	}
 }
