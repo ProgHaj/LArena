@@ -82,7 +82,6 @@ public class Player : MonoBehaviour {
 		Vector3 groundCheck = new Vector3(0, -0.3f, 0);
 		Vector3 underPlayer = new Vector3(0, -0.27f, 0);
 		bool canJump = Physics2D.Linecast(transform.position + underPlayer, transform.position + groundCheck, layerMask);
-		Debug.Log(canJump);
 		return canJump;
 	}
 
